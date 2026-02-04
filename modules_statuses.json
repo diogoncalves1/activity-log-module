@@ -1,4 +1,4 @@
 {
-    "ActivityLog": true,
-    "FinancalGoal": true
+    "FinancalGoal": true,
+    "SharedRoles": true
 }
