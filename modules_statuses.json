@@ -1,4 +1,6 @@
 {
     "FinancalGoal": true,
-    "SharedRoles": true
+    "SharedRoles": true,
+    "User": true,
+    "ApiResponder": true
 }
