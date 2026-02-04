@@ -1,6 +1,7 @@
 {
     "ApiResponder": true,
     "FinancialGoal": true,
+    "Language": true,
     "SharedRoles": true,
     "User": true,
     "UserPreferences": true
