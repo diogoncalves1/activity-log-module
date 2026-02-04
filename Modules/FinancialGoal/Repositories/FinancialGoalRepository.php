@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Modules\Accounts\Core\Helpers;
+use Modules\ActivityLog\Repositories\ActivityLogRepository;
 use Modules\Debts\Core\Helpers as CoreHelpers;
 use Modules\FinancialGoal\Entities\FinancialGoal;
 use Modules\FinancialGoal\Entities\FinancialGoalBasicView;
@@ -69,7 +70,7 @@ class FinancialGoalRepository implements RepositoryApiInterface
             ];
 
             FinancialGoalUser::create($inputUser);
-            $this->activityRepo->storeActivity($financialGoal->id, $user->id, 'goal_created', ['initialTarget' => $input['total_amount']]);
+            $this->activityRepo->storeActivity($financialGoal->id, $user->id, 'financial_goal', ['type' => 'goal_created', 'initialTarget' => $input['total_amount'], 'currencyCode' => $financialGoal->currency->code, 'currencySymbol' => $financialGoal->currency->symbol]);
 
             return $financialGoal;
         });
