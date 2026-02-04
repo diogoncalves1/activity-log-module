@@ -1,4 +1,6 @@
 {
+    "Accounts": true,
+    "ActivityLog": true,
     "ApiResponder": true,
     "FinancialGoal": true,
     "Language": true,
