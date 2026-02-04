@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace Modules\User\Entities;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Modules\Permission\Entities\Role;
+use Modules\UserPreferences\Entities\UserPrefence;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +36,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected static function newFactory()
+    {
+        return \Modules\User\Database\Factories\UserFactory::new();
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -44,5 +52,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    public function preferences()
+    {
+        return $this->hasOne(UserPrefence::class);
     }
 }
