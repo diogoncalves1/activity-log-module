@@ -2,6 +2,7 @@
     "Accounts": true,
     "ActivityLog": true,
     "ApiResponder": true,
+    "Currency": true,
     "FinancialGoal": true,
     "Language": true,
     "SharedRoles": true,
